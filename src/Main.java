@@ -1,6 +1,10 @@
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {    
+        Ticket ticket = new Ticket(101, "Printer offline");
+        System.out.println(ticket.getId());
+        System.out.println(ticket.getTitle());
+        System.out.println(ticket.getStatus());
         Scanner scanner = new Scanner(System.in);    
         while (true) {
             System.out.println("===== Support Ticket Tracker =====");
