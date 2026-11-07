@@ -32,6 +32,22 @@ public class Main {
                         System.out.println(ticket.getId() + " - " + ticket.getTitle() + " - " + ticket.getStatus());
                   }
                 }
+            } else if (choice.equals("3")) {
+                System.out.print("Enter ticket ID to resolve: ");
+                String idInput = scanner.nextLine();
+                int targetId = Integer.parseInt(idInput);
+                boolean found = false;
+                for (Ticket ticket : tickets) {
+                    if (targetId == ticket.getId()) {
+                        found = true;
+                        ticket.resolve();
+                        System.out.println(ticket.getId() + " - " + ticket.getTitle() + " - " + ticket.getStatus());
+                        break;
+                    }
+                }
+                if (!found) {
+                    System.out.println("Ticket not found.");
+                }
             } else {
                 System.out.println("You selected: " + choice);
             }

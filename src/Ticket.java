@@ -15,4 +15,7 @@ public class Ticket {
     public String getStatus() {
         return status;
     }
+    public void resolve() {
+        status = "RESOLVED";
+    }
 }
