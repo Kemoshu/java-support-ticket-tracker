@@ -1,11 +1,10 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {    
-        Ticket ticket = new Ticket(101, "Printer offline");
-        System.out.println(ticket.getId());
-        System.out.println(ticket.getTitle());
-        System.out.println(ticket.getStatus());
+        ArrayList<Ticket> tickets = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);    
+        int nextId = 1;
         while (true) {
             System.out.println("===== Support Ticket Tracker =====");
             System.out.println("1. Create Ticket");
@@ -17,6 +16,13 @@ public class Main {
             if (choice.equals("0")) {
                 System.out.println("Goodbye!");
                 break;
+            } else if (choice.equals("1")) {
+                System.out.print("Enter a Ticket Title: ");
+                String title = scanner.nextLine();
+                Ticket ticket = new Ticket(nextId, title);
+                tickets.add(ticket);
+                System.out.println("Ticket created: " + ticket.getId() + " - " + ticket.getTitle());
+                nextId++;
             } else {
                 System.out.println("You selected: " + choice);
             }
