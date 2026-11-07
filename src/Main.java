@@ -23,6 +23,15 @@ public class Main {
                 tickets.add(ticket);
                 System.out.println("Ticket created: " + ticket.getId() + " - " + ticket.getTitle());
                 nextId++;
+            } else if (choice.equals("2")) {
+                if (tickets.isEmpty()) {
+                    System.out.println("No tickets found.");
+                } else {
+                  System.out.println("Tickets available: " + tickets.size());  
+                  for (Ticket ticket : tickets) {
+                        System.out.println(ticket.getId() + " - " + ticket.getTitle() + " - " + ticket.getStatus());
+                  }
+                }
             } else {
                 System.out.println("You selected: " + choice);
             }
