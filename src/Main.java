@@ -18,7 +18,11 @@ public class Main {
                 break;
             } else if (choice.equals("1")) {
                 System.out.print("Enter a Ticket Title: ");
-                String title = scanner.nextLine();
+                String title = scanner.nextLine().trim();
+                if (title.isEmpty()) {
+                    System.out.println("Ticket title cannot be blank.");
+                    continue;
+                }
                 Ticket ticket = new Ticket(nextId, title);
                 tickets.add(ticket);
                 System.out.println("Ticket created: " + ticket.getId() + " - " + ticket.getTitle());
@@ -34,22 +38,30 @@ public class Main {
                 }
             } else if (choice.equals("3")) {
                 System.out.print("Enter ticket ID to resolve: ");
-                String idInput = scanner.nextLine();
-                int targetId = Integer.parseInt(idInput);
-                boolean found = false;
-                for (Ticket ticket : tickets) {
-                    if (targetId == ticket.getId()) {
-                        found = true;
-                        ticket.resolve();
-                        System.out.println(ticket.getId() + " - " + ticket.getTitle() + " - " + ticket.getStatus());
-                        break;
+                try {
+                    String idInput = scanner.nextLine();
+                    int targetId = Integer.parseInt(idInput);
+                    if (targetId <= 0) {
+                        System.out.println("Ticket ID must be greater than zero.");
+                        continue;
                     }
-                }
-                if (!found) {
-                    System.out.println("Ticket not found.");
+                    boolean found = false;
+                    for (Ticket ticket : tickets) {
+                        if (targetId == ticket.getId()) {
+                            found = true;
+                            ticket.resolve();
+                            System.out.println(ticket.getId() + " - " + ticket.getTitle() + " - " + ticket.getStatus());
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        System.out.println("Ticket not found.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Please enter a valid whole-number ticket ID.");
                 }
             } else {
-                System.out.println("You selected: " + choice);
+                System.out.println("Invalid choice. Please enter 0, 1, 2, or 3.");
             }
         }   
         scanner.close();
